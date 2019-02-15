@@ -34,4 +34,6 @@ the License.
 
     <color name="highContrastHighlight">#ff8c00</color>
     <color name="displaySubtextColor">#4CAF50</color>
+
+    <color name="lights_out_yellow" >#FFB300</color>
 </resources>

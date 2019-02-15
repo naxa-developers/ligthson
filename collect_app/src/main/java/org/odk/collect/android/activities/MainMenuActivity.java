@@ -173,6 +173,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         // manage forms button. no result expected.
         getFormsButton = findViewById(R.id.get_forms);
         getFormsButton.setText(getString(R.string.get_forms));
+        getFormsButton.setVisibility(View.GONE);
         getFormsButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -406,12 +407,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
         if (alertDialog != null && alertDialog.isShowing()) {
             alertDialog.dismiss();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

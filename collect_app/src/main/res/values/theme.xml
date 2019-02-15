@@ -11,6 +11,9 @@
     <style name="BaseDarkAppTheme.Collect" parent="BaseDarkAppTheme" />
 
     <style name="BaseDarkAppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/lights_out_yellow</item>
+        <item name="colorPrimaryDark">@color/lights_out_yellow</item>
+
         <item name="primaryTextColor">@color/darkPrimaryTextColor</item>
         <item name="android:scrollbarThumbHorizontal">@drawable/thumb</item>
         <item name="android:scrollbarThumbVertical">@drawable/thumb</item>
@@ -83,4 +86,6 @@
     <style name="SearchViewTheme.Light" parent="Widget.AppCompat.Light.SearchView">
         <item name="searchHintIcon">@null</item>
     </style>
+
+
 </resources>
