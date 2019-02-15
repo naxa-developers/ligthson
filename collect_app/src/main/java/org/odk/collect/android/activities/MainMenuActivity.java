@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,8 +62,11 @@ import org.odk.collect.android.utilities.ToastUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -107,11 +112,52 @@ public class MainMenuActivity extends CollectAbstractActivity {
         activity.finishAffinity();
     }
 
+
+    private void copyAssets() {
+        AssetManager assetManager = getAssets();
+        String[] files = null;
+        try {
+            files = assetManager.list("");
+            for (String filename : files) {
+
+                if(!"form.xml".equals(filename)){
+                    continue;
+                }
+                InputStream in = null;
+                OutputStream out = null;
+
+                in = assetManager.open(filename);
+                File outFile = new File(Collect.FORMS_PATH, filename);
+                out = new FileOutputStream(outFile);
+                copyFile(in, out);
+                in.close();
+                in = null;
+                out.flush();
+                out.close();
+                out = null;
+
+            }
+        } catch (NullPointerException | IOException e) {
+            Timber.e(e, "Failed to get asset file list.");
+        }
+
+
+    }
+
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while ((read = in.read(buffer)) != -1) {
+            out.write(buffer, 0, read);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         initToolbar();
+        copyAssets();
 
         // enter data button. expects a result.
         Button enterDataButton = findViewById(R.id.enter_data);
