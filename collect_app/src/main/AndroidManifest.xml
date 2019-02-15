@@ -175,6 +175,7 @@ the specific language governing permissions and limitations under the License.
             android:name=".activities.GoogleSheetsUploaderActivity"
             android:configChanges="orientation|screenSize" />
         <activity
+            android:exported="true"
             android:name=".activities.InstanceUploaderList"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -276,5 +277,8 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.WebViewActivity" />
         <activity android:name=".activities.CaptureSelfieVideoActivity" />
         <activity android:name=".activities.CaptureSelfieVideoActivityNewApi" />
+        <activity
+            android:exported="true"
+            android:name=".activities.InstanceUploaderListBodged" />
     </application>
 </manifest>

@@ -5,6 +5,7 @@ import android.app.Application;
 import org.odk.collect.android.activities.FormDownloadList;
 import org.odk.collect.android.activities.FormEntryActivity;
 import org.odk.collect.android.activities.InstanceUploaderList;
+import org.odk.collect.android.activities.InstanceUploaderListBodged;
 import org.odk.collect.android.adapters.InstanceUploaderAdapter;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.fragments.DataManagerList;
@@ -60,6 +61,8 @@ public interface AppComponent {
     void inject(SmsNotificationReceiver smsNotificationReceiver);
 
     void inject(InstanceUploaderList instanceUploaderList);
+
+    void inject(InstanceUploaderListBodged instanceUploaderList);
 
     void inject(InstanceUploaderAdapter instanceUploaderAdapter);
 

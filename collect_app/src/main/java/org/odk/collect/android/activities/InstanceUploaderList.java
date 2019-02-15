@@ -83,6 +83,7 @@ import static org.odk.collect.android.utilities.PermissionUtils.finishAllActivit
  * @author Yaw Anokwa (yanokwa@gmail.com)
  */
 
+
 public class InstanceUploaderList extends InstanceListActivity implements
         OnLongClickListener, DiskSyncListener, AdapterView.OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor> {
     private static final String SHOW_ALL_MODE = "showAllMode";
