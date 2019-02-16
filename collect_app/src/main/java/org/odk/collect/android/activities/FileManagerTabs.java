@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class FileManagerTabs extends CollectAbstractActivity {
 
     private final DataManagerList dataManagerList = DataManagerList.newInstance();
-    private final FormManagerList formManagerList = FormManagerList.newInstance();
+//    private final FormManagerList formManagerList = FormManagerList.newInstance();
 
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -47,13 +47,14 @@ public class FileManagerTabs extends CollectAbstractActivity {
         setContentView(R.layout.file_manager_layout);
         initToolbar();
 
-        String[] tabNames = {getString(R.string.data), getString(R.string.forms)};
+//        String[] tabNames = {getString(R.string.data), getString(R.string.forms)};
+        String[] tabNames = {getString(R.string.data)};
         // Get the ViewPager and set its PagerAdapter so that it can display items
         ViewPager viewPager = findViewById(R.id.pager);
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(dataManagerList);
-        fragments.add(formManagerList);
+//        fragments.add(formManagerList);
 
         viewPager.setAdapter(new ViewPagerAdapter(
                 getSupportFragmentManager(), tabNames, fragments));

@@ -120,11 +120,11 @@ public class MainMenuActivity extends CollectAbstractActivity {
             files = assetManager.list("");
             for (String filename : files) {
 
-                if(!"form.xml".equals(filename)){
+                if (!"form.xml".equals(filename)) {
                     continue;
                 }
-                InputStream in = null;
-                OutputStream out = null;
+                InputStream in;
+                OutputStream out;
 
                 in = assetManager.open(filename);
                 File outFile = new File(Collect.FORMS_PATH, filename);
@@ -196,7 +196,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
             public void onClick(View v) {
                 if (Collect.allowClick(getClass().getName())) {
                     Intent i = new Intent(getApplicationContext(),
-                            InstanceUploaderList.class);
+                            InstanceUploaderListBodged.class);
                     startActivity(i);
                 }
             }
@@ -423,7 +423,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
             }
         } else {
             if (getFormsButton != null) {
-                getFormsButton.setVisibility(View.VISIBLE);
+                getFormsButton.setVisibility(View.GONE);
             }
             if (getFormsSpacer != null) {
                 getFormsSpacer.setVisibility(View.VISIBLE);

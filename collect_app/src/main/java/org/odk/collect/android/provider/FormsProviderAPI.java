@@ -51,8 +51,8 @@ public final class FormsProviderAPI {
          */
         public static final Uri CONTENT_NEWEST_FORMS_BY_FORMID_URI = Uri.parse("content://" + AUTHORITY + "/newest_forms_by_form_id");
 
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.odk.form";
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.odk.form";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.light.form";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.light.form";
 
         // These are the only things needed for an insert
         public static final String DISPLAY_NAME = "displayName";
