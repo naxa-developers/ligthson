@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Electric Form V2</h:title>
+    <model>
+      <instance>
+        <data id="snapshot_xml">
+          <start/>
+          <end/>
+          <who_is_your_area_coordinator/>
+          <where_is_this_street_light_located/>
+          <type_of_street_light/>
+          <please_specify_if_other_stree/>
+          <what_is_your_area_number/>
+          <type_of_street_light_poles/>
+          <please_specify_if_other_stree_001/>
+          <what_is_the_status_of_street_light/>
+          <damage_details_of_the_street_light/>
+          <Take_a_photo_of_street_light/>
+          <GPS_co_ordinate_or_drag_marker_to_point/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </data>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/data/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/data/end" type="dateTime"/>
+      <bind nodeset="/data/who_is_your_area_coordinator" required="true()" type="select1"/>
+      <bind nodeset="/data/where_is_this_street_light_located" required="false()" type="select1"/>
+      <bind nodeset="/data/type_of_street_light" required="false()" type="select1"/>
+      <bind nodeset="/data/please_specify_if_other_stree" relevant=" /data/type_of_street_light  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/data/what_is_your_area_number" required="false()" type="select1"/>
+      <bind nodeset="/data/type_of_street_light_poles" required="false()" type="select1"/>
+      <bind nodeset="/data/please_specify_if_other_stree_001" relevant=" /data/type_of_street_light_poles  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/data/what_is_the_status_of_street_light" required="false()" type="select1"/>
+      <bind nodeset="/data/damage_details_of_the_street_light" required="false()" type="string"/>
+      <bind nodeset="/data/Take_a_photo_of_street_light" required="false()" type="binary"/>
+      <bind nodeset="/data/GPS_co_ordinate_or_drag_marker_to_point" required="false()" type="geopoint"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 appearance="likert" ref="/data/who_is_your_area_coordinator">
+      <label>Who is your area coordinator?</label>
+      <item>
+        <label>Nishon Tandukar</label>
+        <value>nishon_tanduka</value>
+      </item>
+      <item>
+        <label>Manish Adikari</label>
+        <value>manish_adikari</value>
+      </item>
+      <item>
+        <label>Pradip Khatiwada</label>
+        <value>pradip_khatiwa</value>
+      </item>
+    </select1>
+    <select1 ref="/data/where_is_this_street_light_located">
+      <label>Where is this street light located?</label>
+      <item>
+        <label>Highway</label>
+        <value>highway</value>
+      </item>
+      <item>
+        <label>Road</label>
+        <value>road</value>
+      </item>
+      <item>
+        <label>Alley</label>
+        <value>alley</value>
+      </item>
+    </select1>
+    <select1 ref="/data/type_of_street_light">
+      <label>What is the type of street light?</label>
+      <item>
+        <label>Solar powered</label>
+        <value>solar_powered</value>
+      </item>
+      <item>
+        <label>Electric</label>
+        <value>electric</value>
+      </item>
+      <item>
+        <label>Other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/data/please_specify_if_other_stree">
+      <label>Please specify if other (street light)</label>
+    </input>
+    <select1 ref="/data/what_is_your_area_number">
+      <label>What is your area number?</label>
+      <item>
+        <label>1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+    </select1>
+    <select1 ref="/data/type_of_street_light_poles">
+      <label>Type of streetlight poles</label>
+      <item>
+        <label>Wooden</label>
+        <value>wooden</value>
+      </item>
+      <item>
+        <label>Steel</label>
+        <value>steel</value>
+      </item>
+      <item>
+        <label>Other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/data/please_specify_if_other_stree_001">
+      <label>Please specify if other (streetlight pole)</label>
+    </input>
+    <select1 ref="/data/what_is_the_status_of_street_light">
+      <label>What is the status of the street light?</label>
+      <item>
+        <label>Functional</label>
+        <value>functional</value>
+      </item>
+      <item>
+        <label>Non-functional</label>
+        <value>non_functional</value>
+      </item>
+    </select1>
+    <input appearance="multiline" ref="/data/damage_details_of_the_street_light">
+      <label>Damage details of the street light</label>
+    </input>
+    <upload mediatype="image/*" ref="/data/Take_a_photo_of_street_light">
+      <label>Take a photo of street light</label>
+    </upload>
+    <input ref="/data/GPS_co_ordinate_or_drag_marker_to_point">
+      <label>GPS co-ordinate or drag marker to point</label>
+      <hint>GPS coordinates can only be collected when outside.</hint>
+    </input>
+  </h:body>
+</h:html>

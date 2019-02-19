@@ -68,7 +68,7 @@ android {
     compileSdkVersion(28)
 
     defaultConfig {
-        applicationId('org.odk.collect.android')
+        applicationId('org.light.collect.android')
         minSdkVersion(16)
         targetSdkVersion(26)
         versionCode LEGACY_BUILD_NUMBER_OFFSET + getMasterCommitCount()
@@ -97,7 +97,7 @@ android {
                 signingConfig signingConfigs.release
             }
             minifyEnabled(true)
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             resValue("bool", "FIREBASE_CRASHLYTICS_ENABLED", "false")
         }
         // Release build for the official ODK Collect app
@@ -183,6 +183,9 @@ allprojects {
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     implementation 'com.github.smart-fun:XmlToJson:1.4.4'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     implementation "com.android.support:support-v13:${rootProject.supportLibraryVersion}"
     implementation "com.android.support:customtabs:${rootProject.supportLibraryVersion}"
