@@ -74,7 +74,7 @@
       <label>What is the type of street light?</label>
       <item>
         <label>Solar powered</label>
-        <value>solar_powered</value>
+        <value>solar powered</value>
       </item>
       <item>
         <label>Electric</label>
@@ -97,6 +97,38 @@
       <item>
         <label>2</label>
         <value>2</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>5</label>
+        <value>5</value>
+      </item>
+      <item>
+        <label>6</label>
+        <value>6</value>
+      </item>
+      <item>
+        <label>7</label>
+        <value>7</value>
+      </item>
+      <item>
+        <label>8</label>
+        <value>8</value>
+      </item>
+      <item>
+        <label>9</label>
+        <value>9</value>
+      </item>
+      <item>
+        <label>10</label>
+        <value>10</value>
       </item>
     </select1>
     <select1 ref="/data/type_of_street_light_poles">
@@ -125,7 +157,7 @@
       </item>
       <item>
         <label>Non-functional</label>
-        <value>non_functional</value>
+        <value>non-functional</value>
       </item>
     </select1>
     <input appearance="multiline" ref="/data/damage_details_of_the_street_light">

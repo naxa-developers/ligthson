@@ -18,6 +18,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.LiveData;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,12 +26,14 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +60,7 @@ import org.light.collect.android.naxa.network.UploadResponse;
 import org.light.collect.android.preferences.GeneralSharedPreferences;
 import org.light.collect.android.preferences.PreferencesActivity;
 import org.light.collect.android.preferences.Transport;
+import org.light.collect.android.provider.InstanceProviderAPI;
 import org.light.collect.android.tasks.InstanceSyncTask;
 import org.light.collect.android.tasks.sms.SmsNotificationReceiver;
 import org.light.collect.android.tasks.sms.SmsService;
@@ -264,6 +268,7 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                     }
 
                     String photoName = data.getString("Take_a_photo_of_street_light");
+                    data.remove("Take_a_photo_of_street_light");
 
                     String photoPath = FilenameUtils.getFullPath(instanceXMLPath) + photoName;
 
@@ -280,14 +285,37 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
 //                            "}";
 
 
-                    String[] lotLon = data.getString("GPS").split(" ");
+                    String[] lotLon = data.getString("GPS_co_ordinate_or_drag_marker_to_point").split(" ");
                     String latitude = lotLon[0];
                     String longitude = lotLon[1];
 
-                    data.put("latitude",latitude);
-                    data.put("longitude",longitude);
+                    data.remove("GPS_co_ordinate_or_drag_marker_to_point");
+                    data.put("latitude", latitude);
+                    data.put("longitude", longitude);
 
-                    return FormRemoteSource.getINSTANCE().uploadOneSubmission(data.toString(), photoPath);
+                    Timber.i("Uploading %s", data.toString());
+                    Timber.i("Attaching %s", photoPath);
+
+                    return FormRemoteSource.getINSTANCE().uploadOneSubmission(data.toString(), photoPath)
+                            .doOnNext(new Consumer<UploadResponse>() {
+                                @Override
+                                public void accept(UploadResponse uploadResponse) throws Exception {
+                                    if (uploadResponse != null) {
+                                        Timber.i("Server replied %s", uploadResponse.toString());
+                                    }
+                                    if (uploadResponse != null && !TextUtils.equals("Reported", uploadResponse.getMessage())) {
+                                        saveFailedStatusToDatabase(instance);
+                                    } else {
+                                        saveSuccessStatusToDatabase(instance);
+                                    }
+                                }
+                            })
+                            .doOnError(new Consumer<Throwable>() {
+                                @Override
+                                public void accept(Throwable throwable) throws Exception {
+                                    saveFailedStatusToDatabase(instance);
+                                }
+                            });
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -312,6 +340,25 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                     }
                 });
     }
+
+    void saveSuccessStatusToDatabase(Instance instance) {
+        Uri instanceDatabaseUri = Uri.withAppendedPath(InstanceProviderAPI.InstanceColumns.CONTENT_URI,
+                instance.getDatabaseId().toString());
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(InstanceProviderAPI.InstanceColumns.STATUS, InstanceProviderAPI.STATUS_SUBMITTED);
+        Collect.getInstance().getContentResolver().update(instanceDatabaseUri, contentValues, null, null);
+    }
+
+    void saveFailedStatusToDatabase(Instance instance) {
+        Uri instanceDatabaseUri = Uri.withAppendedPath(InstanceProviderAPI.InstanceColumns.CONTENT_URI,
+                instance.getDatabaseId().toString());
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(InstanceProviderAPI.InstanceColumns.STATUS, InstanceProviderAPI.STATUS_SUBMISSION_FAILED);
+        Collect.getInstance().getContentResolver().update(instanceDatabaseUri, contentValues, null, null);
+    }
+
 
     private void showErrorDialog(String message) {
         showDialog("Upload failed", message);
