@@ -281,6 +281,13 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                         checkAndRemoveKey(data, key);
                     }
 
+                    boolean otherIsSelectedInPole = data.has("please_specify_if_other_stree_001");
+                    if (otherIsSelectedInPole) {
+                        data.remove("type_of_street_light_poles");
+                        data.put("type_of_street_light_poles", data.get("please_specify_if_other_stree_001"));
+                        data.remove("please_specify_if_other_stree_001");
+                    }
+
                     String photoName = data.getString("Take_a_photo_of_street_light");
                     data.remove("Take_a_photo_of_street_light");
 
