@@ -28,6 +28,7 @@ import android.widget.ListView;
 
 import org.light.collect.android.R;
 
+import org.light.collect.android.activities.EmailActivity;
 import org.light.collect.android.application.Collect;
 import org.light.collect.android.logic.AuditEvent;
 import org.light.collect.android.logic.FormController;
@@ -169,5 +170,11 @@ public final class DialogUtils {
         alertDialog.setButton(activity.getString(R.string.ok), errorListener);
 
         return alertDialog;
+    }
+
+    public static android.support.v7.app.AlertDialog.Builder createActionDialog(final Context context, String title, String message) {
+        return new android.support.v7.app.AlertDialog.Builder(context)
+                .setTitle(title).setCancelable(false)
+                .setMessage(message);
     }
 }

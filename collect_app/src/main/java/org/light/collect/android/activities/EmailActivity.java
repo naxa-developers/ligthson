@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import org.light.collect.android.R;
+import org.light.collect.android.utilities.DialogUtils;
 import org.light.collect.android.utilities.SharedPreferenceUtils;
 
 import butterknife.ButterKnife;
@@ -62,7 +63,7 @@ public class EmailActivity extends CollectAbstractActivity {
         if (isValidEmail) {
             hideKeyboardInActivity(this);
             String msg = String.format("Saving email %s, please confirm", email);
-            createActionDialog(this, "Review", msg)
+            DialogUtils.createActionDialog(this, "Review", msg)
                     .setPositiveButton("Confirm", (dialog, which) -> {
                         SharedPreferenceUtils.savEmail(email);
                         startActivity(new Intent(EmailActivity.this, MainMenuActivity.class));
@@ -81,11 +82,7 @@ public class EmailActivity extends CollectAbstractActivity {
     }
 
 
-    public static AlertDialog.Builder createActionDialog(final Context context, String title, String message) {
-        return new AlertDialog.Builder(context)
-                .setTitle(title).setCancelable(false)
-                .setMessage(message);
-    }
+
 
     /**
      * Only works from an activity, using getActivity() does not work

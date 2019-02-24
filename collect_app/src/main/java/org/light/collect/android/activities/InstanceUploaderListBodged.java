@@ -68,8 +68,10 @@ import org.light.collect.android.tasks.sms.contracts.SmsSubmissionManagerContrac
 import org.light.collect.android.tasks.sms.models.SmsSubmission;
 import org.light.collect.android.upload.AutoSendWorker;
 import org.light.collect.android.utilities.ArrayUtils;
+import org.light.collect.android.utilities.DialogUtils;
 import org.light.collect.android.utilities.PermissionUtils;
 import org.light.collect.android.utilities.PlayServicesUtil;
+import org.light.collect.android.utilities.SharedPreferenceUtils;
 import org.light.collect.android.utilities.ToastUtils;
 
 import java.io.File;
@@ -204,6 +206,17 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
      */
     @OnClick({R.id.upload_button, R.id.sms_upload_button})
     public void onUploadButtonsClicked(Button button) {
+        if (!SharedPreferenceUtils.hasEmailSaved()) {
+            String msg = "A email is required to make this submission";
+            DialogUtils.createActionDialog(this, "Email", msg)
+                    .setPositiveButton("Fill Email", (dialog, which) -> {
+                        startActivity(new Intent(InstanceUploaderListBodged.this, EmailActivity.class));
+                    })
+                    .setNegativeButton("Dismiss", null)
+                    .show();
+            return;
+        }
+
         Transport transport = Transport.fromPreference(GeneralSharedPreferences.getInstance().get(KEY_SUBMISSION_TRANSPORT_TYPE));
 
         if (!transport.equals(Transport.Sms) && button.getId() == R.id.upload_button) {
