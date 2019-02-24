@@ -71,8 +71,8 @@ android {
         applicationId('org.light.collect.android')
         minSdkVersion(16)
         targetSdkVersion(26)
-        versionCode LEGACY_BUILD_NUMBER_OFFSET + getMasterCommitCount()
-        versionName getVersionName()
+        versionCode(1)
+        versionName("1.0-beta")
         testInstrumentationRunner('android.support.test.runner.AndroidJUnitRunner')
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -93,12 +93,11 @@ android {
     buildTypes {
         // Release build for all forks
         release {
-            if (secrets.getProperty('RELEASE_STORE_FILE')) {
-                signingConfig signingConfigs.release
-            }
-            minifyEnabled(true)
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            resValue("bool", "FIREBASE_CRASHLYTICS_ENABLED", "false")
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            resValue("bool", "FIREBASE_CRASHLYTICS_ENABLED", "true")
+
         }
         // Release build for the official ODK Collect app
         odkCollectRelease {
@@ -197,7 +196,7 @@ dependencies {
     implementation "com.android.support:cardview-v7:${rootProject.supportLibraryVersion}"
     implementation "com.android.support:exifinterface:${rootProject.supportLibraryVersion}"
     implementation "com.android.support:multidex:1.0.3"
-    
+
     implementation "com.google.android.gms:play-services-analytics:16.0.1"
     implementation "com.google.android.gms:play-services-auth:16.0.0"
     implementation "com.google.android.gms:play-services-maps:15.0.1"

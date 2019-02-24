@@ -76,6 +76,10 @@
         <value>steel</value>
       </item>
       <item>
+        <label>Metal</label>
+        <value>metal</value>
+      </item>
+      <item>
         <label>Other</label>
         <value>other</value>
       </item>
