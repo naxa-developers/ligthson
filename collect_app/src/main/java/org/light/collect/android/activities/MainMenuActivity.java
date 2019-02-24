@@ -114,51 +114,12 @@ public class MainMenuActivity extends CollectAbstractActivity {
     }
 
 
-    private void copyAssets() {
-        AssetManager assetManager = getAssets();
-        String[] files = null;
-        try {
-            files = assetManager.list("");
-            for (String filename : files) {
-
-                if (!"afqPwUf5rqQqRJyX5zWokM.xml".equals(filename)) {
-                    continue;
-                }
-                InputStream in;
-                OutputStream out;
-
-                in = assetManager.open(filename);
-                File outFile = new File(Collect.FORMS_PATH, filename);
-                out = new FileOutputStream(outFile);
-                copyFile(in, out);
-                in.close();
-                in = null;
-                out.flush();
-                out.close();
-                out = null;
-
-            }
-        } catch (NullPointerException | IOException e) {
-            Timber.e(e, "Failed to get asset file list.");
-        }
-
-
-    }
-
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024];
-        int read;
-        while ((read = in.read(buffer)) != -1) {
-            out.write(buffer, 0, read);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         initToolbar();
-        copyAssets();
         getSupportActionBar().setSubtitle(SharedPreferenceUtils.getEmail());
         // enter data button. expects a result.
         Button enterDataButton = findViewById(R.id.enter_data);

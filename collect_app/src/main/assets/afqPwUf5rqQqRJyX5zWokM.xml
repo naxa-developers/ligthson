@@ -23,15 +23,15 @@
       </instance>
       <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/data/start" type="dateTime"/>
       <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/data/end" type="dateTime"/>
-      <bind nodeset="/data/where_is_this_street_light_located" required="false()" type="select1"/>
-      <bind nodeset="/data/type_of_street_light" required="false()" type="select1"/>
-      <bind nodeset="/data/please_specify_if_other_stree" relevant=" /data/type_of_street_light  = 'other'" required="false()" type="string"/>
-     <bind nodeset="/data/type_of_street_light_poles" required="false()" type="select1"/>
-      <bind nodeset="/data/please_specify_if_other_stree_001" relevant=" /data/type_of_street_light_poles  = 'other'" required="false()" type="string"/>
-      <bind nodeset="/data/what_is_the_status_of_street_light" required="false()" type="select1"/>
-      <bind nodeset="/data/damage_details_of_the_street_light" required="false()" type="string"/>
-      <bind nodeset="/data/Take_a_photo_of_street_light" required="false()" type="binary"/>
-      <bind nodeset="/data/GPS_co_ordinate_or_drag_marker_to_point" required="false()" type="geopoint"/>
+      <bind nodeset="/data/where_is_this_street_light_located" required="true()" type="select1"/>
+      <bind nodeset="/data/type_of_street_light" required="true()" type="select1"/>
+      <bind nodeset="/data/please_specify_if_other_stree" relevant=" /data/type_of_street_light  = 'other'" required="true()" type="string"/>
+     <bind nodeset="/data/type_of_street_light_poles" required="true()" type="select1"/>
+      <bind nodeset="/data/please_specify_if_other_stree_001" relevant=" /data/type_of_street_light_poles  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/data/what_is_the_status_of_street_light" required="true()" type="select1"/>
+      <bind nodeset="/data/damage_details_of_the_street_light" required="true()" type="string"/>
+      <bind nodeset="/data/Take_a_photo_of_street_light" required="true()" type="binary"/>
+      <bind nodeset="/data/GPS_co_ordinate_or_drag_marker_to_point" required="true()" type="geopoint"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -55,7 +55,7 @@
       <label>What is the type of street light?</label>
       <item>
         <label>Solar powered</label>
-        <value>solar powered</value>
+        <value>solar</value>
       </item>
       <item>
         <label>Electric</label>
