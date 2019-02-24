@@ -238,8 +238,7 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
         int checkedItemCount = getCheckedCount();
 
         if (checkedItemCount > 0) {
-            // items selected
-//            uploadSelectedFiles(button.getId());
+
             formatXMLToJSON();
             setAllToCheckedState(listView, false);
             toggleButtonLabel(findViewById(R.id.toggle_button), listView);
@@ -286,19 +285,6 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                     data.remove("Take_a_photo_of_street_light");
 
                     String photoPath = FilenameUtils.getFullPath(instanceXMLPath) + photoName;
-
-//                    String json = "{\n" +
-//                            "   \"what_is_the_status_of_street_light\":\"non_functional\",\n" +
-//                            "   \"type_of_street_light_poles\":\"concrete\",\n" +
-//                            "   \"what_is_your_area_number\":\"10\",\n" +
-//                            "   \"type_of_street_light\":\"other\",\n" +
-//                            "   \"who_is_your_area_coordinator\":\"No One\",\n" +
-//                            "   \"where_is_this_street_light_located\":\"alley\",\n" +
-//                            "   \"damage_details_of_the_street_light\":\"very damaged sir\",\n" +
-//                            "\t\"latitude\":\"27.69999833333333\",\n" +
-//                            "\t\"longitude\": \"85\"\n" +
-//                            "}";
-
 
                     String[] lotLon = data.getString("GPS_co_ordinate_or_drag_marker_to_point").split(" ");
                     String latitude = lotLon[0];
