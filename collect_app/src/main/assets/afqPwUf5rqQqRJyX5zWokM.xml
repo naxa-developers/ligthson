@@ -7,7 +7,6 @@
         <data id="snapshot_xml">
           <start/>
           <end/>
-          <who_is_your_area_coordinator/>
           <where_is_this_street_light_located/>
           <type_of_street_light/>
           <please_specify_if_other_stree/>
@@ -24,7 +23,6 @@
       </instance>
       <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/data/start" type="dateTime"/>
       <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/data/end" type="dateTime"/>
-      <bind nodeset="/data/who_is_your_area_coordinator" required="true()" type="select1"/>
       <bind nodeset="/data/where_is_this_street_light_located" required="false()" type="select1"/>
       <bind nodeset="/data/type_of_street_light" required="false()" type="select1"/>
       <bind nodeset="/data/please_specify_if_other_stree" relevant=" /data/type_of_street_light  = 'other'" required="false()" type="string"/>
@@ -38,21 +36,6 @@
     </model>
   </h:head>
   <h:body>
-    <select1 appearance="likert" ref="/data/who_is_your_area_coordinator">
-      <label>Who is your area coordinator?</label>
-      <item>
-        <label>Nishon Tandukar</label>
-        <value>nishon_tanduka</value>
-      </item>
-      <item>
-        <label>Manish Adikari</label>
-        <value>manish_adikari</value>
-      </item>
-      <item>
-        <label>Pradip Khatiwada</label>
-        <value>pradip_khatiwa</value>
-      </item>
-    </select1>
     <select1 ref="/data/where_is_this_street_light_located">
       <label>Where is this street light located?</label>
       <item>
