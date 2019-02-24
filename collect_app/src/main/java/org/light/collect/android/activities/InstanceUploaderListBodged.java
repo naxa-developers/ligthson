@@ -260,6 +260,8 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
         List<Long> a = Arrays.asList(instanceIds);
         int totalItem = a.size();
         int currentProgress = 0;
+        String email = SharedPreferenceUtils.getEmail();
+
 
         disposable = Observable.just(a)
 
@@ -305,6 +307,7 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                     data.remove("GPS_co_ordinate_or_drag_marker_to_point");
                     data.put("latitude", latitude);
                     data.put("longitude", longitude);
+                    data.put("email", email);
 
                     Timber.i("Uploading %s", data.toString());
                     Timber.i("Attaching %s", photoPath);
