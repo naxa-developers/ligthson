@@ -16,6 +16,7 @@ limitations under the License.
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:visible="false"
         android:id="@+id/menu_preferences"
         android:title="@string/general_preferences"
         app:showAsAction="never" />

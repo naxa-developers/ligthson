@@ -11,7 +11,6 @@
           <where_is_this_street_light_located/>
           <type_of_street_light/>
           <please_specify_if_other_stree/>
-          <what_is_your_area_number/>
           <type_of_street_light_poles/>
           <please_specify_if_other_stree_001/>
           <what_is_the_status_of_street_light/>
@@ -29,8 +28,7 @@
       <bind nodeset="/data/where_is_this_street_light_located" required="false()" type="select1"/>
       <bind nodeset="/data/type_of_street_light" required="false()" type="select1"/>
       <bind nodeset="/data/please_specify_if_other_stree" relevant=" /data/type_of_street_light  = 'other'" required="false()" type="string"/>
-      <bind nodeset="/data/what_is_your_area_number" required="false()" type="select1"/>
-      <bind nodeset="/data/type_of_street_light_poles" required="false()" type="select1"/>
+     <bind nodeset="/data/type_of_street_light_poles" required="false()" type="select1"/>
       <bind nodeset="/data/please_specify_if_other_stree_001" relevant=" /data/type_of_street_light_poles  = 'other'" required="false()" type="string"/>
       <bind nodeset="/data/what_is_the_status_of_street_light" required="false()" type="select1"/>
       <bind nodeset="/data/damage_details_of_the_street_light" required="false()" type="string"/>
@@ -84,49 +82,6 @@
     <input ref="/data/please_specify_if_other_stree">
       <label>Please specify if other (street light)</label>
     </input>
-    <select1 ref="/data/what_is_your_area_number">
-      <label>What is your area number?</label>
-      <item>
-        <label>1</label>
-        <value>1</value>
-      </item>
-      <item>
-        <label>2</label>
-        <value>2</value>
-      </item>
-      <item>
-        <label>3</label>
-        <value>3</value>
-      </item>
-      <item>
-        <label>4</label>
-        <value>4</value>
-      </item>
-      <item>
-        <label>5</label>
-        <value>5</value>
-      </item>
-      <item>
-        <label>6</label>
-        <value>6</value>
-      </item>
-      <item>
-        <label>7</label>
-        <value>7</value>
-      </item>
-      <item>
-        <label>8</label>
-        <value>8</value>
-      </item>
-      <item>
-        <label>9</label>
-        <value>9</value>
-      </item>
-      <item>
-        <label>10</label>
-        <value>10</value>
-      </item>
-    </select1>
     <select1 ref="/data/type_of_street_light_poles">
       <label>Type of streetlight poles</label>
       <item>
