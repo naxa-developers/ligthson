@@ -30,6 +30,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,6 +56,7 @@ import org.light.collect.android.preferences.PreferencesActivity;
 import org.light.collect.android.provider.InstanceProviderAPI.InstanceColumns;
 import org.light.collect.android.utilities.ApplicationConstants;
 import org.light.collect.android.utilities.PlayServicesUtil;
+import org.light.collect.android.utilities.SharedPreferenceUtils;
 import org.light.collect.android.utilities.SharedPreferencesUtils;
 import org.light.collect.android.utilities.ToastUtils;
 
@@ -101,6 +103,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
     private Cursor viewSentCursor;
     private final IncomingHandler handler = new IncomingHandler(this);
     private final MyContentObserver contentObserver = new MyContentObserver();
+
 
     // private static boolean DO_NOT_EXIT = false;
 
@@ -156,7 +159,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         setContentView(R.layout.main_menu);
         initToolbar();
         copyAssets();
-
+        getSupportActionBar().setSubtitle(SharedPreferenceUtils.getEmail());
         // enter data button. expects a result.
         Button enterDataButton = findViewById(R.id.enter_data);
         enterDataButton.setText(getString(R.string.enter_data_button));
@@ -453,8 +456,18 @@ public class MainMenuActivity extends CollectAbstractActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu_bodged, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_email:
+                startActivity(new Intent(this, EmailActivity.class));
+                finish();
+                break;
             case R.id.menu_about:
                 startActivity(new Intent(this, AboutActivity.class));
                 return true;
@@ -471,6 +484,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
                 }
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -666,4 +666,5 @@
     <string name="background_location_enabled">This form tracks your location. You can disable tracking in the \u0020\u0020⋮\u0020\u0020 menu above.</string>
     <string name="open_file">Open file</string>
     <string name="msg_please_register">Please, register with your email address</string>
+    <string name="msg_welcome_main_menu">Hello, %s</string>
 </resources>

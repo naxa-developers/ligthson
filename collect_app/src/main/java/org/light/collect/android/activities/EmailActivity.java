@@ -58,11 +58,12 @@ public class EmailActivity extends CollectAbstractActivity {
         boolean isValidEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
         if (isValidEmail) {
             hideKeyboardInActivity(this);
-            String msg = String.format("Saving email %s, please confirm", email);
+            String msg = String.format("Saving email %s", email);
             DialogUtils.createActionDialog(this, "Review", msg)
                     .setPositiveButton("Confirm", (dialog, which) -> {
                         SharedPreferenceUtils.savEmail(email);
                         startActivity(new Intent(EmailActivity.this, MainMenuActivity.class));
+                        finish();
                     })
                     .setNegativeButton("Dismiss", null)
                     .show();
