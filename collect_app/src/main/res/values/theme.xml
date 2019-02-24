@@ -17,7 +17,14 @@
         <item name="colorControlHighlight">@color/lights_out_yellow</item>
     </style>
 
+    <style name="SplashTheme" parent="BaseDarkAppTheme">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
     <style name="BaseDarkAppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorAccent">@color/lights_out_yellow</item>
+        <item name="colorControlNormal">@color/lights_out_yellow</item>
+        <item name="colorControlActivated">@color/lights_out_yellow</item>
         <item name="primaryTextColor">@color/darkPrimaryTextColor</item>
         <item name="android:scrollbarThumbHorizontal">@drawable/thumb</item>
         <item name="android:scrollbarThumbVertical">@drawable/thumb</item>

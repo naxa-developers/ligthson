@@ -216,12 +216,7 @@ the specific language governing permissions and limitations under the License.
             android:name="org.light.collect.android.activities.SplashScreenActivity"
             android:theme="@android:style/Theme.Dialog">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- Enable Shortcuts for Command Actions -->
         <activity
@@ -273,17 +268,26 @@ the specific language governing permissions and limitations under the License.
 
         <activity
             android:name="org.light.collect.android.location.GeoActivity"
-            android:configChanges="orientation"
-            android:exported="true" />
+            android:configChanges="orientation" />
         <activity android:name="org.light.collect.android.activities.WebViewActivity" />
         <activity android:name="org.light.collect.android.activities.CaptureSelfieVideoActivity" />
         <activity android:name="org.light.collect.android.activities.CaptureSelfieVideoActivityNewApi" />
         <activity
             android:name="org.light.collect.android.activities.InstanceUploaderListBodged"
-            android:exported="true" />
+          />
         <activity
             android:windowSoftInputMode="adjustResize"
             android:name=".activities.EmailActivity">
+
+        </activity>
+        <activity
+            android:name=".activities.BodgedSplashScreenActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>

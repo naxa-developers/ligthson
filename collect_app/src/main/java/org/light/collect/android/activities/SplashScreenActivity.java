@@ -117,6 +117,7 @@ public class SplashScreenActivity extends Activity {
             firstRun = true;
         }
 
+        showSplash = true;
         // do all the first run things
         if (firstRun || showSplash) {
             editor.putBoolean(GeneralKeys.KEY_FIRST_RUN, false);

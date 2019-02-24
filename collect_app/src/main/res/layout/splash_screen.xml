@@ -8,6 +8,7 @@
     android:padding="10dip">
 
     <ImageView
+
         android:id="@+id/splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
         android:contentDescription="@string/app_name"
         android:gravity="center"
         android:padding="0dip"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <LinearLayout
         android:background="@color/lights_out_yellow"
