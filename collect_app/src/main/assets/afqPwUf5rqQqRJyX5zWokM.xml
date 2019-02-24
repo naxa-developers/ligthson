@@ -80,10 +80,6 @@
         <label>Electric</label>
         <value>electric</value>
       </item>
-      <item>
-        <label>Other</label>
-        <value>other</value>
-      </item>
     </select1>
     <input ref="/data/please_specify_if_other_stree">
       <label>Please specify if other (street light)</label>
