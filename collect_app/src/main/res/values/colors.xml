@@ -36,4 +36,5 @@ the License.
     <color name="displaySubtextColor">#4CAF50</color>
 
     <color name="lights_out_yellow" >#FFB300</color>
+    <color name="transparent_black" >#A4000000</color>
 </resources>

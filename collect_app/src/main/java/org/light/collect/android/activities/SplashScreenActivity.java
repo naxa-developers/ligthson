@@ -36,6 +36,7 @@ import org.light.collect.android.preferences.GeneralKeys;
 import org.light.collect.android.preferences.GeneralSharedPreferences;
 import org.light.collect.android.utilities.DialogUtils;
 import org.light.collect.android.utilities.PermissionUtils;
+import org.light.collect.android.utilities.SharedPreferenceUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -127,7 +128,12 @@ public class SplashScreenActivity extends Activity {
     }
 
     private void endSplashScreen() {
-        startActivity(new Intent(this, MainMenuActivity.class));
+        if (SharedPreferenceUtils.hasEmailSaved()) {
+            startActivity(new Intent(this, MainMenuActivity.class));
+        } else {
+            startActivity(new Intent(this, EmailActivity.class));
+
+        }
         finish();
     }
 

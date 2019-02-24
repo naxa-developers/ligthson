@@ -157,7 +157,7 @@
       </item>
       <item>
         <label>Non-functional</label>
-        <value>non-functional</value>
+        <value>non functional</value>
       </item>
     </select1>
     <input appearance="multiline" ref="/data/damage_details_of_the_street_light">

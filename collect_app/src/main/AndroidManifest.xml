@@ -106,6 +106,7 @@ the specific language governing permissions and limitations under the License.
         </provider>
 
         <activity
+            android:exported="true"
             android:name="org.light.collect.android.activities.MainMenuActivity"
             android:configChanges="locale|orientation|screenSize" />
         <activity
@@ -164,7 +165,7 @@ the specific language governing permissions and limitations under the License.
         <activity android:name="org.light.collect.android.activities.FormDownloadList">
             <intent-filter>
                 <action android:name="org.odk.collect.android.FORM_DOWNLOAD" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/vnd.odk.form" />
             </intent-filter>
         </activity>
@@ -175,9 +176,9 @@ the specific language governing permissions and limitations under the License.
             android:name="org.light.collect.android.activities.GoogleSheetsUploaderActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:exported="true"
             android:name="org.light.collect.android.activities.InstanceUploaderList"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
@@ -185,11 +186,10 @@ the specific language governing permissions and limitations under the License.
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="org.light.collect.android.activities.InstanceUploaderActivity">
+        <activity android:name="org.light.collect.android.activities.InstanceUploaderActivity">
             <intent-filter>
                 <action android:name="org.odk.collect.android.INSTANCE_UPLOAD" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/vnd.odk.instance" />
             </intent-filter>
         </activity>
@@ -215,6 +215,7 @@ the specific language governing permissions and limitations under the License.
         <activity
             android:name="org.light.collect.android.activities.SplashScreenActivity"
             android:theme="@android:style/Theme.Dialog">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -278,7 +279,12 @@ the specific language governing permissions and limitations under the License.
         <activity android:name="org.light.collect.android.activities.CaptureSelfieVideoActivity" />
         <activity android:name="org.light.collect.android.activities.CaptureSelfieVideoActivityNewApi" />
         <activity
-            android:exported="true"
-            android:name="org.light.collect.android.activities.InstanceUploaderListBodged" />
+            android:name="org.light.collect.android.activities.InstanceUploaderListBodged"
+            android:exported="true" />
+        <activity
+            android:windowSoftInputMode="adjustResize"
+            android:name=".activities.EmailActivity">
+
+        </activity>
     </application>
 </manifest>

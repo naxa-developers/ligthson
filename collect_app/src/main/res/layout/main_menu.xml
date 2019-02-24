@@ -10,6 +10,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="0dp"
     android:layout_marginTop="0dp"
     android:layout_marginRight="0dp"
@@ -20,11 +21,36 @@
     <!-- Toolbar -->
     <include layout="@layout/toolbar" />
 
+    <ImageView
+        android:layout_below="@id/toolbar"
+        android:scaleType="centerCrop"
+        android:background="@color/transparent_black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <ImageView
+
+        android:layout_alignParentBottom="true"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_undraw_ordinary_day_xi0c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_below="@id/toolbar"
+        android:scaleType="centerCrop"
+        android:background="@color/transparent_black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
     <include
         layout="@layout/toolbar_action_bar_shadow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,6 +59,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/main_menu_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,11 +86,15 @@
                 android:paddingEnd="10dp"
                 android:paddingRight="10dp">
 
+
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
 
                 <Button
+                    android:background="@drawable/rounded_shape"
+                    android:theme="@style/PrimaryButton"
                     android:id="@+id/enter_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,6 +108,8 @@
                     android:layout_height="5dp" />
 
                 <Button
+                    android:background="@drawable/rounded_shape"
+                    style="@style/PrimaryButton"
                     android:id="@+id/review_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -91,6 +124,9 @@
                     android:layout_height="5dp" />
 
                 <Button
+                    android:background="@drawable/rounded_shape"
+                    style="@style/PrimaryButton"
+
                     android:id="@+id/send_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,6 +140,9 @@
                     android:layout_height="5dp" />
 
                 <Button
+                    android:background="@drawable/rounded_shape"
+                    style="@style/PrimaryButton"
+
                     android:id="@+id/view_sent_forms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -118,6 +157,8 @@
                     android:layout_height="20dp" />
 
                 <Button
+                    android:background="@drawable/rounded_shape"
+                    style="@style/PrimaryButton"
                     android:id="@+id/get_forms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,6 +174,8 @@
                     android:layout_height="5dp" />
 
                 <Button
+                    android:background="@drawable/rounded_shape"
+                    style="@style/PrimaryButton"
                     android:id="@+id/manage_forms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,4 +187,6 @@
 
         </ScrollView>
     </LinearLayout>
+
+
 </RelativeLayout>
