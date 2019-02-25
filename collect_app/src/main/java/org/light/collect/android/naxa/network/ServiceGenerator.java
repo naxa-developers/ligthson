@@ -1,5 +1,6 @@
 package org.light.collect.android.naxa.network;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.readystatesoftware.chuck.ChuckInterceptor;
@@ -34,6 +35,7 @@ public class ServiceGenerator {
         okHttpClientBuilder.writeTimeout(10, TimeUnit.SECONDS);
         okHttpClientBuilder.readTimeout(60, TimeUnit.SECONDS);
         okHttpClientBuilder.addInterceptor(new ChuckInterceptor(Collect.getInstance().getApplicationContext()));
+        okHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
 
         return okHttpClientBuilder
                 .build();

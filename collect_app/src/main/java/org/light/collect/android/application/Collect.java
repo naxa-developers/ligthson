@@ -32,6 +32,7 @@ import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobManagerCreateException;
+import com.facebook.stetho.Stetho;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.leakcanary.LeakCanary;
@@ -226,7 +227,7 @@ public class Collect extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
         singleton = this;
-
+        Stetho.initializeWithDefaults(this);
         applicationComponent = DaggerAppComponent.builder()
                 .application(this)
                 .build();
