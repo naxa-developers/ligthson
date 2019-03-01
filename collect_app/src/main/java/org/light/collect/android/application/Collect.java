@@ -227,7 +227,9 @@ public class Collect extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
         singleton = this;
-        Stetho.initializeWithDefaults(this);
+        if(BuildConfig.DEBUG){
+            Stetho.initializeWithDefaults(this);
+        }
         applicationComponent = DaggerAppComponent.builder()
                 .application(this)
                 .build();

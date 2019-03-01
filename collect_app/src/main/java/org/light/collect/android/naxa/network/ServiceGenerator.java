@@ -1,10 +1,13 @@
 package org.light.collect.android.naxa.network;
 
+import android.os.Build;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 
+import org.light.collect.android.BuildConfig;
 import org.light.collect.android.application.Collect;
 
 import java.util.concurrent.TimeUnit;
@@ -35,7 +38,9 @@ public class ServiceGenerator {
         okHttpClientBuilder.writeTimeout(10, TimeUnit.SECONDS);
         okHttpClientBuilder.readTimeout(60, TimeUnit.SECONDS);
         okHttpClientBuilder.addInterceptor(new ChuckInterceptor(Collect.getInstance().getApplicationContext()));
-        okHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
+        if(BuildConfig.DEBUG){
+            okHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
+        }
 
         return okHttpClientBuilder
                 .build();

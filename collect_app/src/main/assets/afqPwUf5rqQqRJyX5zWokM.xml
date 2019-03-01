@@ -29,7 +29,7 @@
      <bind nodeset="/data/type_of_street_light_poles" required="true()" type="select1"/>
       <bind nodeset="/data/please_specify_if_other_stree_001" relevant=" /data/type_of_street_light_poles  = 'other'" required="true()" type="string"/>
       <bind nodeset="/data/what_is_the_status_of_street_light" required="true()" type="select1"/>
-      <bind nodeset="/data/damage_details_of_the_street_light" required="true()" type="string"/>
+      <bind nodeset="/data/damage_details_of_the_street_light" relevant="/data/what_is_the_status_of_street_light != 'functional'" required="true()" type="string"/>
       <bind nodeset="/data/Take_a_photo_of_street_light" required="true()" type="binary"/>
       <bind nodeset="/data/GPS_co_ordinate_or_drag_marker_to_point" required="true()" type="geopoint"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
@@ -80,6 +80,10 @@
         <value>metal</value>
       </item>
       <item>
+        <label>Concrete</label>
+        <value>concrete</value>
+      </item>
+      <item>
         <label>Other</label>
         <value>other</value>
       </item>
@@ -92,6 +96,10 @@
       <item>
         <label>Functional</label>
         <value>functional</value>
+      </item>
+      <item>
+        <label>Partial functioning</label>
+        <value>partial functioning</value>
       </item>
       <item>
         <label>Non-functional</label>
