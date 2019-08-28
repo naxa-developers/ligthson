@@ -81,6 +81,7 @@ import org.light.collect.android.adapters.IconMenuListAdapter;
 import org.light.collect.android.adapters.model.IconMenuItem;
 import org.light.collect.android.application.Collect;
 import org.light.collect.android.dao.FormsDao;
+import org.light.collect.android.dao.InstancesDao;
 import org.light.collect.android.dao.helpers.ContentResolverHelper;
 import org.light.collect.android.dao.helpers.FormsDaoHelper;
 import org.light.collect.android.dao.helpers.InstancesDaoHelper;
@@ -113,6 +114,8 @@ import org.light.collect.android.preferences.GeneralKeys;
 import org.light.collect.android.preferences.GeneralSharedPreferences;
 import org.light.collect.android.preferences.PreferencesActivity;
 import org.light.collect.android.provider.FormsProviderAPI.FormsColumns;
+import org.light.collect.android.provider.InstanceProvider;
+import org.light.collect.android.provider.InstanceProviderAPI;
 import org.light.collect.android.provider.InstanceProviderAPI.InstanceColumns;
 import org.light.collect.android.tasks.FormLoaderTask;
 import org.light.collect.android.tasks.SaveFormIndexTask;
@@ -320,12 +323,12 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
 
         compositeDisposable
                 .add(eventBus
-                .register(ReadPhoneStatePermissionRxEvent.class)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(event -> {
-                    readPhoneStatePermissionRequestNeeded = true;
-                }));
+                        .register(ReadPhoneStatePermissionRxEvent.class)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(event -> {
+                            readPhoneStatePermissionRequestNeeded = true;
+                        }));
 
         errorMessage = null;
 
@@ -1016,7 +1019,6 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
         }
 
 
-
         return true;
     }
 
@@ -1264,6 +1266,18 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
                     if (saveName == null) {
                         // last resort, default to the form title
                         saveName = formController.getFormTitle();
+                        Cursor cursor = null;
+                        try {
+                            cursor = Collect.getInstance().getContentResolver()
+                                    .query(InstanceProviderAPI.InstanceColumns.CONTENT_URI, null, null, null, null);
+                            saveName = saveName.concat(" ").concat(String.valueOf(cursor != null ? cursor.getCount() : 0));
+                        } catch (Exception e) {
+                            //unused
+                        } finally {
+                            if (cursor != null) {
+                                cursor.close();
+                            }
+                        }
                     }
                     // present the prompt to allow user to name the form
                     TextView sa = endView.findViewById(R.id.save_form_as);
@@ -2653,7 +2667,7 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
     /**
      * Requests that unsent finalized forms be auto-sent. If no network connection is available,
      * the work will be performed when a connection becomes available.
-     *
+     * <p>
      * TODO: if the user changes auto-send settings, should an auto-send job immediately be enqueued?
      */
     private void requestAutoSend() {

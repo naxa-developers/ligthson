@@ -106,7 +106,7 @@
         <value>non functional</value>
       </item>
     </select1>
-    <input appearance="multiline" ref="/data/damage_details_of_the_street_light">
+    <input ref="/data/damage_details_of_the_street_light">
       <label>Damage details of the street light</label>
     </input>
     <upload mediatype="image/*" ref="/data/Take_a_photo_of_street_light">

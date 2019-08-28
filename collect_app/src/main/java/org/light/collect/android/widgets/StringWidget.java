@@ -120,6 +120,7 @@ public class StringWidget extends QuestionWidget {
         clearFocus();
 
         String s = getAnswerText();
+        s = s.trim().replace("\"", "");
         return !s.equals("") ? new StringData(s) : null;
     }
 

@@ -74,9 +74,9 @@ import org.light.collect.android.utilities.PlayServicesUtil;
 import org.light.collect.android.utilities.SharedPreferenceUtils;
 import org.light.collect.android.utilities.ToastUtils;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -92,10 +92,8 @@ import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
@@ -275,11 +273,15 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                     String instanceXMLPath = instance.getInstanceFilePath();
                     String fileContent = FileIOUtils.readFile2String(instanceXMLPath);
                     XmlToJson xmlToJson = new XmlToJson.Builder(fileContent).build();
-                    JSONObject jsonObject = xmlToJson.toJson();
+                    String cleanedString = cleanText(xmlToJson.toString());
+
+                    JSONObject jsonObject = new JSONObject(cleanedString);
                     JSONObject data = jsonObject.getJSONObject("data");
+
                     for (String key : toRemove) {
                         checkAndRemoveKey(data, key);
                     }
+
 
                     boolean otherIsSelectedInPole = data.has("please_specify_if_other_stree_001");
                     if (otherIsSelectedInPole) {
@@ -348,6 +350,14 @@ public class InstanceUploaderListBodged extends InstanceListActivity implements
                         showErrorDialog(errorMessage);
                     }
                 });
+    }
+
+    private String cleanText(String text) {
+        text = text.trim();
+        text = text.replace("'", "");
+        text = text.replace("\\n", " ");
+
+        return text;
     }
 
     void saveSuccessStatusToDatabase(Instance instance) {
